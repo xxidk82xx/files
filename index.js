@@ -19,7 +19,6 @@ for (const file of commandFiles) {
 client.once('ready', () => 
 {
 	console.log('Ready!');
-	
 });
 
 //client.on("messageCreate", async message =>
@@ -33,7 +32,7 @@ client.on('interactionCreate', async interaction =>
 	const command = client.commands.get(interaction.commandName);
 	if (!command) return;
 	try {
-		await command.execute(interaction, client);
+		await command.execute(interaction);
 	} catch (error) {
         console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
