@@ -14,19 +14,20 @@ module.exports = {
 		const string = interaction.options.getString('input');
         channel = await interaction.guild.channels.create({ name: string})
 			
-		//interaction.reply(`successfully made channel: "${string}"`)
-		await fileUp("./files.json", channel)
-		interaction.reply("uploaded file to channel")
-		//block = await channel.send({ files: ["./files.json"] })
+		interaction.reply(`successfully made channel: "${string}"`)
+		fileIds = await fileUp(string, channel, interaction)
+		//interaction.reply("uploaded file to channel")
 
-		/*filesD.push
+		filesD.push
 		(
 			{
+				fileName: string,
 				channelId: channel.id,
-				blocks:[block.id]
+				blocks:fileIds
 			}
 		) 
 		fs.writeFileSync("files.json", JSON.stringify(filesD))
-		console.log(`updated json with file ${JSON.stringify(filesD)}`)*/
+		console.log(`updated json with file ${JSON.stringify(filesD)}`)
+		interaction.editReply("uploaded file successfully")
 	},
 };
